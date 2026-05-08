@@ -1,0 +1,7 @@
+/* Small tweaks on top of Bootstrap */
+.table-actions {
+  white-space: nowrap;
+}
+.navbar-brand {
+  font-weight: 600;
+}

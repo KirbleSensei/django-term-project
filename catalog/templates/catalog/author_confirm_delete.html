@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Delete author{% endblock %}
+{% block content %}
+  <h1 class="h4 mb-3">Delete author</h1>
+  <p>Delete <strong>{{ object }}</strong>? Books will keep existing links if M2M cleared by DB — prefer removing author from books first.</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a class="btn btn-outline-secondary" href="{% url 'catalog:author-detail' object.pk %}">Cancel</a>
+  </form>
+{% endblock %}

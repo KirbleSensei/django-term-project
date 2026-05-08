@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Delete book{% endblock %}
+{% block content %}
+  <h1 class="h4 mb-3">Delete book</h1>
+  <p>Are you sure you want to delete <strong>{{ object }}</strong>? This removes all copies and loan history links may be blocked.</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Yes, delete</button>
+    <a class="btn btn-outline-secondary" href="{% url 'catalog:book-detail' object.pk %}">Cancel</a>
+  </form>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Checkout{% endblock %}
+{% block content %}
+  <h1 class="h3 mb-3">Check out a copy</h1>
+  <p class="text-muted">Only copies not currently on loan appear in the list. Staff can check out for any member.</p>
+  <form method="post" class="card card-body shadow-sm col-lg-8">
+    {% csrf_token %}
+    {% for field in form %}
+      <div class="mb-3">
+        <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+        {% if field.name == 'due_at' %}
+          <div class="form-text">Leave blank for default due date (14 days from checkout).</div>
+        {% endif %}
+        {{ field.errors }}
+      </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Check out</button>
+    <a class="btn btn-link" href="{% url 'catalog:loan-list' %}">Cancel</a>
+  </form>
+{% endblock %}

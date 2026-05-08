@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}{{ book.title }}{% endblock %}
+{% block content %}
+  <div class="row">
+    <div class="col-lg-8">
+      <h1 class="h3">{{ book.title }}</h1>
+      <p class="text-muted mb-2">
+        {% if book.isbn %}ISBN {{ book.isbn }} · {% endif %}
+        {% if book.publication_year %}{{ book.publication_year }}{% endif %}
+      </p>
+      <p><strong>Authors:</strong>
+        {% for a in book.authors.all %}
+          <a href="{% url 'catalog:author-detail' a.pk %}">{{ a.name }}</a>{% if not forloop.last %}, {% endif %}
+        {% empty %}—{% endfor %}
+      </p>
+      <p class="mb-4">
+        <span class="badge text-bg-secondary">{{ book.total_copies|default:0 }} copies</span>
+        <span class="badge text-bg-success">{{ book.available_copies|default:0 }} available</span>
+      </p>
+
+      <h2 class="h5">Copies</h2>
+      <div class="table-responsive card shadow-sm mb-4">
+        <table class="table mb-0">
+          <thead class="table-light">
+          <tr>
+            <th>Code</th>
+            <th>Condition</th>
+            <th>Status</th>
+            {% if user.is_authenticated %}
+              <th></th>{% endif %}
+          </tr>
+          </thead>
+          <tbody>
+          {% for copy in book.copies.all %}
+            <tr>
+              <td>{{ copy.copy_code }}</td>
+              <td>{{ copy.get_condition_display }}</td>
+              <td>
+                {% if copy.is_on_loan %}
+                  <span class="badge text-bg-warning">On loan</span>
+                {% else %}
+                  <span class="badge text-bg-success">Available</span>
+                {% endif %}
+              </td>
+              {% if user.is_authenticated %}
+                <td class="table-actions">
+                  {% if not copy.is_on_loan %}
+                    <a class="btn btn-sm btn-outline-primary"
+                       href="{% url 'catalog:loan-checkout' %}?copy={{ copy.pk }}">Checkout</a>
+                  {% endif %}
+                </td>
+              {% endif %}
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="4" class="text-muted text-center py-3">No copies yet.</td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          {% if user.is_staff %}
+            <a class="btn btn-outline-primary w-100 mb-2" href="{% url 'catalog:book-update' book.pk %}">Edit book</a>
+            <a class="btn btn-outline-danger w-100 mb-2" href="{% url 'catalog:book-delete' book.pk %}">Delete book</a>
+            <a class="btn btn-primary w-100 mb-2" href="{% url 'catalog:bookcopy-create' %}?book={{ book.pk }}">Add copy</a>
+            <a class="btn btn-outline-secondary w-100" href="{% url 'catalog:bookcopy-list' %}?book={{ book.pk }}">Manage copies</a>
+          {% else %}
+            <p class="small text-muted mb-0">Staff can edit the catalog and add copies.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
