@@ -1,0 +1,302 @@
+[
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$bGQtG6iAyXrfxiq6d6lEAG$Efd+Z0gSrAZ1xwhPNb9Nc6PY8baWa8EA4nYHeNlDavE=",
+    "last_login": "2026-05-10T15:23:10.421Z",
+    "is_superuser": true,
+    "username": "kirbles",
+    "first_name": "",
+    "last_name": "",
+    "email": "2004emrekaplan@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-05-10T15:16:58.399Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$g09qRLn4GMUPuelnFi6X82$ZwC0NxRsVSPtD1Vr97PosJXyWl764lHs1uDbpUnV7jM=",
+    "last_login": "2026-05-10T15:23:03.526Z",
+    "is_superuser": false,
+    "username": "demo_user",
+    "first_name": "Demo",
+    "last_name": "",
+    "email": "demo_user@example.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-05-10T15:21:31Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "catalog.author",
+  "pk": 1,
+  "fields": {
+    "name": "George Orwell",
+    "bio": "English novelist and essayist."
+  }
+},
+{
+  "model": "catalog.author",
+  "pk": 2,
+  "fields": {
+    "name": "J.K. Rowling",
+    "bio": "British author of the Harry Potter series."
+  }
+},
+{
+  "model": "catalog.author",
+  "pk": 3,
+  "fields": {
+    "name": "Harper Lee",
+    "bio": "American novelist known for To Kill a Mockingbird."
+  }
+},
+{
+  "model": "catalog.author",
+  "pk": 4,
+  "fields": {
+    "name": "F. Scott Fitzgerald",
+    "bio": "American novelist of the Jazz Age."
+  }
+},
+{
+  "model": "catalog.book",
+  "pk": 1,
+  "fields": {
+    "title": "1984",
+    "isbn": "9780451524935",
+    "publication_year": 1949,
+    "authors": [
+      1
+    ]
+  }
+},
+{
+  "model": "catalog.book",
+  "pk": 2,
+  "fields": {
+    "title": "Animal Farm",
+    "isbn": "9780451526342",
+    "publication_year": 1945,
+    "authors": [
+      1
+    ]
+  }
+},
+{
+  "model": "catalog.book",
+  "pk": 3,
+  "fields": {
+    "title": "Harry Potter and the Sorcerer's Stone",
+    "isbn": "9780590353427",
+    "publication_year": 1997,
+    "authors": [
+      2
+    ]
+  }
+},
+{
+  "model": "catalog.book",
+  "pk": 4,
+  "fields": {
+    "title": "Harry Potter and the Chamber of Secrets",
+    "isbn": "9780439064873",
+    "publication_year": 1998,
+    "authors": [
+      2
+    ]
+  }
+},
+{
+  "model": "catalog.book",
+  "pk": 5,
+  "fields": {
+    "title": "To Kill a Mockingbird",
+    "isbn": "9780061120084",
+    "publication_year": 1960,
+    "authors": [
+      3
+    ]
+  }
+},
+{
+  "model": "catalog.book",
+  "pk": 6,
+  "fields": {
+    "title": "The Great Gatsby",
+    "isbn": "9780743273565",
+    "publication_year": 1925,
+    "authors": [
+      4
+    ]
+  }
+},
+{
+  "model": "catalog.bookcopy",
+  "pk": 1,
+  "fields": {
+    "book": 1,
+    "copy_code": "1981-001",
+    "condition": "good",
+    "created_at": "2026-05-10T15:19:14Z"
+  }
+},
+{
+  "model": "catalog.bookcopy",
+  "pk": 2,
+  "fields": {
+    "book": 1,
+    "copy_code": "1981-002",
+    "condition": "new",
+    "created_at": "2026-05-10T15:19:14Z"
+  }
+},
+{
+  "model": "catalog.bookcopy",
+  "pk": 3,
+  "fields": {
+    "book": 2,
+    "copy_code": "ANI2-001",
+    "condition": "good",
+    "created_at": "2026-05-10T15:19:14Z"
+  }
+},
+{
+  "model": "catalog.bookcopy",
+  "pk": 4,
+  "fields": {
+    "book": 2,
+    "copy_code": "ANI2-002",
+    "condition": "new",
+    "created_at": "2026-05-10T15:19:14Z"
+  }
+},
+{
+  "model": "catalog.bookcopy",
+  "pk": 5,
+  "fields": {
+    "book": 3,
+    "copy_code": "HAR3-001",
+    "condition": "good",
+    "created_at": "2026-05-10T15:19:14Z"
+  }
+},
+{
+  "model": "catalog.bookcopy",
+  "pk": 6,
+  "fields": {
+    "book": 3,
+    "copy_code": "HAR3-002",
+    "condition": "new",
+    "created_at": "2026-05-10T15:19:14Z"
+  }
+},
+{
+  "model": "catalog.bookcopy",
+  "pk": 7,
+  "fields": {
+    "book": 4,
+    "copy_code": "HAR4-001",
+    "condition": "good",
+    "created_at": "2026-05-10T15:19:14Z"
+  }
+},
+{
+  "model": "catalog.bookcopy",
+  "pk": 8,
+  "fields": {
+    "book": 4,
+    "copy_code": "HAR4-002",
+    "condition": "new",
+    "created_at": "2026-05-10T15:19:14Z"
+  }
+},
+{
+  "model": "catalog.bookcopy",
+  "pk": 9,
+  "fields": {
+    "book": 5,
+    "copy_code": "TOK5-001",
+    "condition": "good",
+    "created_at": "2026-05-10T15:19:14Z"
+  }
+},
+{
+  "model": "catalog.bookcopy",
+  "pk": 10,
+  "fields": {
+    "book": 5,
+    "copy_code": "TOK5-002",
+    "condition": "new",
+    "created_at": "2026-05-10T15:19:14Z"
+  }
+},
+{
+  "model": "catalog.bookcopy",
+  "pk": 11,
+  "fields": {
+    "book": 6,
+    "copy_code": "THE6-001",
+    "condition": "good",
+    "created_at": "2026-05-10T15:19:14Z"
+  }
+},
+{
+  "model": "catalog.bookcopy",
+  "pk": 12,
+  "fields": {
+    "book": 6,
+    "copy_code": "THE6-002",
+    "condition": "new",
+    "created_at": "2026-05-10T15:19:14Z"
+  }
+},
+{
+  "model": "catalog.memberprofile",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "phone": "",
+    "max_active_loans": 5
+  }
+},
+{
+  "model": "catalog.memberprofile",
+  "pk": 2,
+  "fields": {
+    "user": 2,
+    "phone": "",
+    "max_active_loans": 5
+  }
+},
+{
+  "model": "catalog.loan",
+  "pk": 1,
+  "fields": {
+    "book_copy": 1,
+    "member": 1,
+    "checked_out_at": "2026-05-07T15:19:14Z",
+    "due_at": "2026-05-21T15:19:14Z",
+    "returned_at": null
+  }
+},
+{
+  "model": "catalog.loan",
+  "pk": 2,
+  "fields": {
+    "book_copy": 2,
+    "member": 1,
+    "checked_out_at": "2026-04-20T15:19:14Z",
+    "due_at": "2026-05-04T15:19:14Z",
+    "returned_at": "2026-05-06T15:19:14Z"
+  }
+}
+]
