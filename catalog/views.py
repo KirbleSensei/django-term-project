@@ -99,7 +99,14 @@ class BookDetailView(DetailView):
             .prefetch_related(
                 Prefetch(
                     "copies",
-                    queryset=BookCopy.objects.select_related("book"),
+                    queryset=BookCopy.objects.select_related("book").prefetch_related(
+                        Prefetch(
+                            "loans",
+                            queryset=Loan.objects.filter(returned_at__isnull=True).order_by(
+                                "-checked_out_at"
+                            ),
+                        )
+                    ),
                 )
             )
         )

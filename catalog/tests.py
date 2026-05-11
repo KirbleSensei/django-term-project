@@ -104,3 +104,34 @@ class LoanAPITests(TestCase):
         res = self.client.get(reverse("api-loan-list"))
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(len(res.data["results"]), 1)
+
+
+class LoanStatusTemplateTests(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user("carol", password="pass12345")
+        self.member = MemberProfile.objects.get(user=self.user)
+        self.book = Book.objects.create(title="Status Book")
+        self.copy = BookCopy.objects.create(book=self.book, copy_code="ST-1")
+
+    def test_overdue_active_loan_shows_late_status(self):
+        Loan.objects.create(
+            book_copy=self.copy,
+            member=self.member,
+            checked_out_at=timezone.now() - timedelta(days=20),
+            due_at=timezone.now() - timedelta(days=3),
+        )
+        self.client.login(username="carol", password="pass12345")
+        response = self.client.get(reverse("catalog:loan-list"))
+        self.assertContains(response, "LATE")
+        self.assertNotContains(response, '<span class="badge text-bg-warning">Active</span>')
+
+    def test_book_detail_shows_late_for_overdue_copy(self):
+        Loan.objects.create(
+            book_copy=self.copy,
+            member=self.member,
+            checked_out_at=timezone.now() - timedelta(days=20),
+            due_at=timezone.now() - timedelta(days=1),
+        )
+        response = self.client.get(reverse("catalog:book-detail", kwargs={"pk": self.book.pk}))
+        self.assertContains(response, "LATE")
+        self.assertNotContains(response, "ACTIVE")

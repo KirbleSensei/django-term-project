@@ -87,8 +87,24 @@ class BookCopy(models.Model):
     def __str__(self) -> str:
         return f"{self.copy_code} ({self.book})"
 
+    @property
+    def active_loan(self):
+        prefetched = getattr(self, "_prefetched_objects_cache", {})
+        prefetched_loans = prefetched.get("loans")
+        if prefetched_loans is not None:
+            for loan in prefetched_loans:
+                if loan.returned_at is None:
+                    return loan
+            return None
+        return self.loans.filter(returned_at__isnull=True).order_by("-checked_out_at").first()
+
     def is_on_loan(self) -> bool:
-        return self.loans.filter(returned_at__isnull=True).exists()
+        return self.active_loan is not None
+
+    @property
+    def is_overdue(self) -> bool:
+        loan = self.active_loan
+        return bool(loan and loan.due_at and timezone.now() > loan.due_at)
 
 
 class MemberProfile(models.Model):
