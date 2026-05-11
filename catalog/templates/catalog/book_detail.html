@@ -37,7 +37,11 @@
               <td>{{ copy.get_condition_display }}</td>
               <td>
                 {% if copy.is_on_loan %}
-                  <span class="badge text-bg-warning">On loan</span>
+                  {% if copy.is_overdue %}
+                    <span class="badge text-bg-danger">LATE</span>
+                  {% else %}
+                    <span class="badge text-bg-warning">ACTIVE</span>
+                  {% endif %}
                 {% else %}
                   <span class="badge text-bg-success">Available</span>
                 {% endif %}
