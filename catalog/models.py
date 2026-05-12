@@ -183,4 +183,6 @@ class Loan(models.Model):
 
     @property
     def is_overdue(self) -> bool:
-        return self.is_active and timezone.now() > self.due_at
+        if not self.is_active or self.due_at is None:
+            return False
+        return timezone.now() > self.due_at
