@@ -33,6 +33,8 @@
           <td class="loan-status">
             {% if loan.returned_at %}
               <span class="badge text-bg-secondary">Returned</span>
+            {% elif loan.is_overdue %}
+              <span class="badge text-bg-danger">LATE</span>
             {% else %}
               <span class="badge text-bg-warning">Active</span>
             {% endif %}
