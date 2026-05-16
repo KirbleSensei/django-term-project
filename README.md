@@ -48,26 +48,6 @@ With the dev server running and logged in (session cookie) or as staff for write
 
 Pagination: `?page=2` (10 items per page, from `REST_FRAMEWORK` settings).
 
-## Production (example: Render)
-
-1. Create a **PostgreSQL** instance and copy its **Internal Database URL**.
-2. Create a **Web Service** from this repo; build command: `pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate`
-3. Start command: `gunicorn config.wsgi:application --bind 0.0.0.0:$PORT`
-4. Set environment variables:
-
-| Variable | Example |
-|----------|---------|
-| `DJANGO_SETTINGS_MODULE` | `config.settings.production` |
-| `DJANGO_SECRET_KEY` | long random string |
-| `DJANGO_DEBUG` | `false` |
-| `DJANGO_ALLOWED_HOSTS` | `your-app.onrender.com` |
-| `DATABASE_URL` | from Render Postgres (internal URL) |
-| `DATABASE_SSL_REQUIRE` | `true` (if your provider requires SSL) |
-| `DJANGO_CSRF_TRUSTED_ORIGINS` | `https://your-app.onrender.com` (comma-separated if several) |
-| `DJANGO_SECURE_SSL_REDIRECT` | `true` (default); set `false` only for special local HTTPS tests |
-
-After deploy, put the public **https://…** URL in your assignment and confirm `/admin/` and the home page load.
-
 > **Deployment URL (student): https://django-term-project.onrender.com**
 
 ## License
