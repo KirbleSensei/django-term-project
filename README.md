@@ -68,7 +68,7 @@ Pagination: `?page=2` (10 items per page, from `REST_FRAMEWORK` settings).
 
 After deploy, put the public **https://…** URL in your assignment and confirm `/admin/` and the home page load.
 
-> **Deployment URL (student):** replace this line with your live site after you deploy.
+> **Deployment URL (student): https://django-term-project.onrender.com**
 
 ## License
 
